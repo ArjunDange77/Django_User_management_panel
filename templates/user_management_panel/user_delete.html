@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Confirm Deletion</h1>
+  <p>Are you sure you want to delete {{ user.username }}?</p>
+  <form method="post">
+    {% csrf_token %}
+    <input type="submit" value="Yes">
+    <a href="{% url 'user_list' %}">No, cancel</a>
+  </form>
+{% endblock %}

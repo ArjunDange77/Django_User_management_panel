@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% block title %}User List{% endblock %}
+
+{% block content %}
+	<h2>User List</h2>
+	<table>
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Username</th>
+				<th>Email</th>
+				<th>Is Active</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for user in users %}
+				<tr>
+					<td>{{ user.first_name }}</td>
+					<td>{{ user.username }}</td>
+					<td>{{ user.email }}</td>
+					<td>{{ user.is_active }}</td>
+					<td>
+						<a href="{% url 'user_update' user.id %}" class="button edit">Edit</a>
+
+						<form method="post" action="{% url 'user_soft_delete' user.id %}">
+							{% csrf_token %}
+							<button type="submit" class="soft-delete">Soft Delete</button>
+						</form>
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<button ><a href="{% url 'user_create' %}">Create User</a></button>
+
+	<style>
+	h2 {
+	text-align: center;
+	}
+
+	table {
+	border-collapse: collapse;
+	width: 100%;
+	margin-bottom: 20px;
+	}
+
+	th, td {
+	text-align: left;
+	padding: 8px;
+	border-bottom: 1px solid #ddd;
+	}
+
+	th {
+	background-color: #f2f2f2;
+	color: #333;
+	}
+
+	td {
+	background-color: #fff;
+	}
+
+	tr:hover td {
+	background-color: #f5f5f5;
+	}
+
+	button {
+	padding: 5px 10px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	color: #fff;
+	background-color: #007bff;
+	font-size: 14px;
+	font-weight: 500;
+	text-decoration: none;
+	text-align: center;
+	}
+
+	button a {
+	color: #fff;
+	text-decoration: none;
+	}
+
+	.edit {
+  	background-color: #008CBA;
+	display:block;
+	width:80px;
+	}
+
+	button.soft-delete {
+	background-color: #dc3545;
+	font-size: 12px;
+	}
+
+	</style>
+{% endblock %}

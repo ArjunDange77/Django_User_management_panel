@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+	<header>
+		<h1>User Management Panel</h1>
+		<nav>
+			<ul>
+				<li><a href="{% url 'login' %}">Login</a></li>
+				<!-- <li><a href="{% url 'user_list' %}">Users</a></li> -->
+				<li><a href="{% url 'logout' %}">Logout</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<main>
+		{% block content %}{% endblock %}
+	</main>
+
+	<footer>
+		<p>&copy; AD ENTERPRISES </p>
+	</footer>
+</body>
+</html>
+
+<style>
+	header {
+	background-color: #444;
+	text-align: center;
+	color: #fff;
+	}
+
+	header h1 {
+	margin: 0;
+	padding: 10px;
+	}
+
+	nav {
+	background-color: #444;
+	padding: 10px;
+	}
+
+	nav ul{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	text-align: center;
+	}
+
+	nav li {
+    display: inline-block;
+    margin: 0 10px;
+	}
+
+	nav li a {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px;
+	}
+
+	nav li a:hover {
+    background-color: #555;
+	}
+</style>
